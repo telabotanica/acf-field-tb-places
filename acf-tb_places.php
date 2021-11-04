@@ -2,14 +2,14 @@
 
 /**
  * Plugin Name: Advanced Custom Fields: Tb Places
- * Plugin URI: https://github.com/tela-botanica/acf-field-tb-places
+ * Plugin URI: https://github.com/telabotanica/acf-field-tb-places
  * Description: This ACF Field allows you to select and geocode an address using Nominatim API
  * Version: 0.0.1
  * Author: Idir Alliche
  * Author URI: https://tela-botanica.org
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
- * GitHub Plugin URI: https://github.com/tela-botanica/acf-field-tb-places
+ * GitHub Plugin URI: https://github.com/telabotanica/acf-field-tb-places
  */
 
 // exit if accessed directly
