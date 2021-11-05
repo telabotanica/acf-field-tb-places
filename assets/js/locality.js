@@ -255,8 +255,8 @@ TbPlaces.prototype.setFormatedLocalityData = function(suggestion) {
         } else {
             if('address' === suggestionPlaceType) {
                 if(undefined !== addressData.road) {
-                    placeName = addressData['house_number'] ?? '';
-                    placeName += ' '+addressData.road;
+                    placeName = addressData['house_number'] ? addressData['house_number']+' ' : '';
+                    placeName += addressData.road;
                 } else if (undefined !== addressData.natural) {
                     placeName = addressData.natural;
                 }
