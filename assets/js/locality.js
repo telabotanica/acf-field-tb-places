@@ -30,7 +30,14 @@ TbPlaces.prototype.initForm = function() {
 
 TbPlaces.prototype.initEvts = function() {
     if (0 < this.places.length) {
+        let data = {value: ''};
 
+        try {
+          data = JSON.parse(this.hiddenField.val());
+        } catch (e) {
+          console.warn(e);
+        }
+        this.places.val(data.value);
         this.toggleCloseButton(false);
         this.places.off('input').on('input', debounce(this.launchSearch.bind(this), 500));
         this.places.off('keydown').on('keydown', debounce(this.handlePlacesKeydown.bind(this), 500));
@@ -112,7 +119,7 @@ TbPlaces.prototype.filterSuggestions = function(data) {
         }
 
         const locality = lthis.getLocalityFromData(suggestion.address),
-            suggestionPlaceType = lthis.getSuggestionPlaceType(locality.type, suggestion.address.road);
+            suggestionPlaceType = lthis.getSuggestionPlaceType(locality.type, suggestion.address);
 
         if('all' !== lthis.placeType && lthis.placeType !== suggestionPlaceType) {
             return;
@@ -151,12 +158,12 @@ TbPlaces.prototype.getLocalityFromData = function(addressData) {
     return locality;
 };
 
-TbPlaces.prototype.getSuggestionPlaceType = function(localityType, road = 'unknown') {
+TbPlaces.prototype.getSuggestionPlaceType = function(localityType, addressData) {
     let placeType = 'address';//default
 
     if('unknown' === localityType) {
         placeType = 'country';
-    } else if('unknown' === road) {
+    } else if((undefined === addressData.road || '' === addressData.road) && (undefined === addressData.natural || '' === addressData.natural)) {
         placeType = ['village', 'city', 'locality'].includes(localityType) ? 'city': 'townhall';
     }
     return placeType
@@ -247,8 +254,12 @@ TbPlaces.prototype.setFormatedLocalityData = function(suggestion) {
             placeName = addressData.country;
         } else {
             if('address' === suggestionPlaceType) {
-                placeName = addressData['house_number'] ?? '';
-                placeName += ' '+addressData.road;
+                if(undefined !== addressData.road) {
+                    placeName = addressData['house_number'] ? addressData['house_number']+' ' : '';
+                    placeName += addressData.road;
+                } else if (undefined !== addressData.natural) {
+                    placeName = addressData.natural;
+                }
                 place.city = suggestion.locality.name;
             } else {
                 placeName = suggestion.locality.name;
@@ -295,7 +306,7 @@ TbPlaces.prototype.getLocalityPostCode = function (suggestion, coordinates) {
             lthis.placeLabel.removeClass('loading');
             if ('undefined' !== data && 0 < data.features.length) {
                 suggestion.address.postcode = data.features[0]['properties']['postcode'];
-                lthis.getFormatedLocalityData(suggestion);
+                lthis.setFormatedLocalityData(suggestion);
                 lthis.toggleCloseButton();
                 lthis.resetOnClick();
             } else {
