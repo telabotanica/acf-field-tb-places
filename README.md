@@ -24,3 +24,7 @@ This ACF field type is compatible with:
 Please see `readme.txt` for changelog
 
 Inspired by ACF Algolia Places Field previously found on https://github.com/etaminstudio/acf-field-algolia-places (see the original ACF Algolia Places Field readme file), deprecated since Algolia places will no longer be maintained on mai 2022.
+
+### Special case : Convert from _ACF Algolia Places_ Field to _ACF Tb places_
+
+Go to your ACF **field groups**, select successively each field group using _Algolia places_ **field type** and switch to ***Tb places*** then update the field group.
