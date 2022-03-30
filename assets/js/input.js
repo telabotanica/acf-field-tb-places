@@ -1,3 +1,5 @@
+ var $ = jQuery.noConflict();
+
 (function($){
 
   function initialize_field( $el ) {
