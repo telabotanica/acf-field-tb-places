@@ -137,7 +137,7 @@ TbPlaces.prototype.validateSuggestionData = function(suggestion) {
     const validCoordinates = undefined !== suggestion.lat && undefined !== suggestion.lon,
         validAddressData = undefined !== suggestion.address,
         validDisplayName = undefined !== suggestion['display_name'];
-    let validCountryData = validAddressData && undefined !== suggestion.address.country && undefined !== suggestion.address['country_code'] && undefines !== suggestion.address.postcode;
+    let validCountryData = validAddressData && undefined !== suggestion.address.country && undefined !== suggestion.address['country_code'] && undefined !== suggestion.address.postcode;
 
     if(!!this.placeCountries && '' !== this.placeCountries && validCountryData) {
         validCountries = this.placeCountries.toLowerCase().split(',');
