@@ -268,7 +268,7 @@ TbPlaces.prototype.setFormatedLocalityData = function(suggestion) {
             place = {
                 ...place,
                 country: addressData.country,
-                administrative: addressData.state,
+                administrative: addressData.region,
                 postcode: addressData.postcode
             };
         }
