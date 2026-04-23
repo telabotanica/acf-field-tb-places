@@ -20,7 +20,7 @@ if( ! defined( 'ABSPATH' ) ) exit;
 if( !class_exists('acf_plugin_tb_places') ) :
 
 class acf_plugin_tb_places {
-
+	public $settings;
 	/*
 	*  __construct
 	*

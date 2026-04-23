@@ -9,20 +9,20 @@ if( !class_exists('acf_field_tb_places') ) :
 
 
 class acf_field_tb_places extends acf_field {
-
-
-  /*
-  *  __construct
-  *
-  *  This function will setup the field type data
-  *
-  *  @type  function
-  *  @date  5/03/2014
-  *  @since  5.0.0
-  *
-  *  @param  n/a
-  *  @return  n/a
-  */
+    public $settings;
+    
+    /*
+    *  __construct
+    *
+    *  This function will setup the field type data
+    *
+    *  @type  function
+    *  @date  5/03/2014
+    *  @since  5.0.0
+    *
+    *  @param  n/a
+    *  @return  n/a
+    */
 
   function __construct( $settings ) {
 
